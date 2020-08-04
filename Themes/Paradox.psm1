@@ -11,22 +11,22 @@ function Write-Theme {
     $lastColor = $sl.Colors.PromptBackgroundColor
     $prompt = Write-Prompt -Object $sl.PromptSymbols.StartSymbol -ForegroundColor $sl.Colors.PromptForegroundColor -BackgroundColor $sl.Colors.SessionInfoBackgroundColor
 
-    #check the last command state and indicate if failed
-    If ($lastCommandFailed) {
-        $prompt += Write-Prompt -Object "$($sl.PromptSymbols.FailedCommandSymbol) " -ForegroundColor $sl.Colors.CommandFailedIconForegroundColor -BackgroundColor $sl.Colors.SessionInfoBackgroundColor
-    }
+    # #check the last command state and indicate if failed
+    # If ($lastCommandFailed) {
+    #     $prompt += Write-Prompt -Object "$($sl.PromptSymbols.FailedCommandSymbol) " -ForegroundColor $sl.Colors.CommandFailedIconForegroundColor -BackgroundColor $sl.Colors.SessionInfoBackgroundColor
+    # }
 
     #check for elevated prompt
     If (Test-Administrator) {
         $prompt += Write-Prompt -Object "$($sl.PromptSymbols.ElevatedSymbol) " -ForegroundColor $sl.Colors.AdminIconForegroundColor -BackgroundColor $sl.Colors.SessionInfoBackgroundColor
     }
 
-    $user = $sl.CurrentUser
-    $computer = $sl.CurrentHostname
+    # $user = $sl.CurrentUser
+    # $computer = $sl.CurrentHostname
     $path = Get-FullPath -dir $pwd
-    if (Test-NotDefaultUser($user)) {
-        $prompt += Write-Prompt -Object "$user@$computer " -ForegroundColor $sl.Colors.SessionInfoForegroundColor -BackgroundColor $sl.Colors.SessionInfoBackgroundColor
-    }
+    # if (Test-NotDefaultUser($user)) {
+    #     $prompt += Write-Prompt -Object "$user@$computer " -ForegroundColor $sl.Colors.SessionInfoForegroundColor -BackgroundColor $sl.Colors.SessionInfoBackgroundColor
+    # }
 
     if (Test-VirtualEnv) {
         $prompt += Write-Prompt -Object "$($sl.PromptSymbols.SegmentForwardSymbol) " -ForegroundColor $sl.Colors.SessionInfoBackgroundColor -BackgroundColor $sl.Colors.VirtualEnvBackgroundColor
